@@ -3,6 +3,8 @@ import mongodb from 'mongodb'
 import * as dotenv from 'dotenv'
 dotenv.config()
 import MoviesDAO from './dao/moviesDAO.js'
+import ReviewsDAO from './dao/reviewsDAO.js'
+
 async function main(){
     
     const port = process.env.PORT || 8000
@@ -11,7 +13,8 @@ async function main(){
     )
     try{
         await client.connect().then(console.log('connected to Atlas'))
-        await MoviesDAO.injectDB(client).then(console.log("connected to movies DB"))
+        await MoviesDAO.injectDB(client)
+        await ReviewsDAO.injectDB(client)
         app.listen(port, ()=>{
             console.log('sever is running on port:' +port)
         })
