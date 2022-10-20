@@ -26,7 +26,7 @@ export default class ReviewsController{
 
     static async apiUpdateReview(req, res, next){
         try{
-            const reviewId = req.body.movie_id
+            const reviewId = req.body.review_id
             const review = req.body.review
             
             const date = new Date()
@@ -58,7 +58,7 @@ export default class ReviewsController{
             const reviewId = req.body.review_id
             const userId = req.body.user_id
 
-            const ReviewResponse = await ReviewsDAO.addReview(reviewId,userId)
+            const ReviewResponse = await ReviewsDAO.deleteReview(reviewId,userId)
             res.json({status:"success"})
         }catch(e){
             res.status(500).json({error: e.message})
