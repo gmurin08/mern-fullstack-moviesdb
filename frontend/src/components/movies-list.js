@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
+
 export default function MoviesList(props){
 
     const [movies, setMovies] = useState([])
@@ -68,42 +69,46 @@ export default function MoviesList(props){
     }
 
     return(
-        <div className="App">
+        <div className="App" style={{marginTop:'20px'}}>
             <Container>
                 <Form>
                     <Row>
                         <Col>
-                            <Form.Group>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Search by title"
-                                    value={searchTitle}
-                                    onChange={onChangeSearchTitle}
-                                />
-                            </Form.Group>
-                            <Button
-                                variant='primary'
-                                type='button'
-                                onClick={findByTitle}
-                            > Search </Button>
+                            <div style={{display:"flex", alignItems:"center"}}>
+                                <Form.Group>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Search by title"
+                                        value={searchTitle}
+                                        onChange={onChangeSearchTitle}
+                                    />
+                                </Form.Group>
+                                <Button style={{marginLeft:"5px"}}
+                                    variant='primary'
+                                    type='button'
+                                    onClick={findByTitle}
+                                > Search </Button>
+                            </div>
                         </Col>
                         <Col>
-                            <Form.Group>
-                                <Form.Control as='select' onChange={onChangeSearchRating} >
-                                {ratings.map(rating=>{
-                                    return (<option value={rating}>{rating}</option>)
-                                })}
-                                </Form.Control>
-                            </Form.Group>
-                            <Button
-                                variant='primary'
-                                type='button'
-                                onClick={findByRating}
-                            > Search </Button>
+                            <div style={{display:"flex", justifyContent:'left',alignItems:"center"}}>
+                                <Form.Group>
+                                    <Form.Control as='select' onChange={onChangeSearchRating} >
+                                    {ratings.map(rating=>{
+                                        return (<option value={rating}>{rating}</option>)
+                                    })}
+                                    </Form.Control>
+                                </Form.Group>
+                                <Button style={{marginLeft:"5px"}}
+                                    variant='primary'
+                                    type='button'
+                                    onClick={findByRating}
+                                > Search </Button>
+                            </div>
                         </Col>
                     </Row>
                 </Form>
-
+                <br></br>
                 <Row>
                     {movies.map((movie)=>{
                         return(
